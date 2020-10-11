@@ -12,14 +12,14 @@ public class NewsScopesArrayAdapter extends ArrayAdapter {
        super(mContext, resource);
        this.mContext = mContext;
        this.mHeadlines = mHeadlines;
-       this.mBriefings = mHeadlines;
+       this.mBriefings = mBriefings;
     }
 
     @Override
     public Object getItem(int position) {
         String headlines = mHeadlines[position];
         String briefings = mBriefings[position];
-        return String.format("%s \n entails of:", headlines, briefings);
+        return String.format("%s Entails of :%s ", headlines, briefings);
     }
 
     @Override
