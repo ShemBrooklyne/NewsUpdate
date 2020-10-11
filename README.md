@@ -4,6 +4,18 @@
 
 ## Description 
 
+## Setup/Installation and Usage
+Clone this repository and open with Android Studio
+https://github.com/ShemBrooklyne/NewsUpdate
+Emulate on a virtual Machine or on your Phone Device
+
+## TECHNNOLOGIES USED
+- Java
+- Android Studio
+- Xml
+- Roboelectric
+- Espresso
+
 ### LICENSE
 
 Copyright 2020 Shem Brooklyne Mwangi
