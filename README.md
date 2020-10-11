@@ -6,9 +6,9 @@
 NewsUpdated App is an android news updater app that scopes the latest news all over via a news Api that will be used to generate news all over.
 
 ## Setup/Installation and Usage
-Clone this repository and open with Android Studio
-https://github.com/ShemBrooklyne/NewsUpdate
-Emulate on a virtual Machine or on your Phone Device
+- Clone this repository and open with Android Studio
+- https://github.com/ShemBrooklyne/NewsUpdate
+- Emulate on a virtual Machine or on your Phone Device
 
 ## TECHNNOLOGIES USED
 - Java
