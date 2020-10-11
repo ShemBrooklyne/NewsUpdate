@@ -3,6 +3,7 @@
 ### Shem Brooklyne
 
 ## Description 
+NewsUpdated App is an android news updater app that scopes the latest news all over via a news Api that will be used to generate news all over.
 
 ## Setup/Installation and Usage
 Clone this repository and open with Android Studio
