@@ -15,7 +15,9 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 //    @BindView(R.id.userTextView) EditText mUserTextView;
+    @BindView(R.id.editTextPersonName) EditText mEditTextPersonName;
     @BindView(R.id.GetStartedbutton) Button mGetStartedButton;
+    @BindView(R.id.ViewTopHeadlines) Button mViewTopHeadlines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +26,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         mGetStartedButton.setOnClickListener(this);
+        mViewTopHeadlines.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         if (view == mGetStartedButton) {
-//            String user = mUserTextView.getText().toString();
+            String user = mEditTextPersonName.getText().toString();
             Intent intent = new Intent(MainActivity.this, NewsUpdateActivity.class);
-//            intent.putExtra("user", user);
+            intent.putExtra("user", user);
             startActivity(intent);
         }
     }
