@@ -20,6 +20,7 @@ public class NewsUpdateActivity extends AppCompatActivity {
 
 //    @BindView(R.id.userTextView) EditText mUserTextView;
     @BindView(R.id.newsTextView) ListView mNewsTextView;
+    @BindView(R.id.editTextPersonName) TextView mEditTextPersonName;
 
     // ListView displaying some hard coded news highlights
     private String[] headlines = new String[] {
@@ -69,7 +70,7 @@ public class NewsUpdateActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mNewsTextView = (ListView) findViewById(R.id.newsTextView);
-//        mUserTextView = (EditText) findViewById(R.id.userTextView);
+        mEditTextPersonName = (TextView) findViewById(R.id.editTextPersonName);
 
         //ArrayAdapter for displaying the listView in Array form.
         NewsScopesArrayAdapter adapter = new NewsScopesArrayAdapter(this, android.R.layout.simple_list_item_1, headlines, briefings);
@@ -87,7 +88,7 @@ public class NewsUpdateActivity extends AppCompatActivity {
         //User's next page display welcome message, Using Intents.
         Log.v("NewsScopeActivity", "In the onItemClickListener!");
         Intent intent = getIntent();
-//        String user = intent.getStringExtra("user");
-//        mUserTextView.setText("Welcome back " + user);
+        String user = intent.getStringExtra("user");
+        mEditTextPersonName.setText("Welcome back " + user);
     }
 }
