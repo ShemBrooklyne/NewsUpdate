@@ -1,6 +1,6 @@
 package com.moringaschool.newsupdates.network;
 
-import com.moringaschool.newsupdates.NewsUpdatesSearchResponse;
+import com.moringaschool.newsupdates.models.NewsUpdatesSearchResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.widget.TextView;
 
 import com.moringaschool.newsupdates.ui.MainActivity;
-import com.moringaschool.newsupdates.ui.NewsUpdateActivity;
+import com.moringaschool.newsupdates.ui.NewsListActivity;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class MainActivityTest {
     @Test
     public void secondActivityStarted(){
         activity.findViewById(R.id.GetStartedbutton).performClick();
-        Intent expectedIntent = new Intent(activity, NewsUpdateActivity.class);
+        Intent expectedIntent = new Intent(activity, NewsListActivity.class);
         ShadowActivity shadowActivity = org.robolectric.Shadows.shadowOf(activity);
         Intent actualIntent = shadowActivity.getNextStartedActivity();
         assertTrue(actualIntent.filterEquals(expectedIntent));

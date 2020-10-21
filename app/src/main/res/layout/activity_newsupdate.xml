@@ -5,7 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CBFFCE3B"
-    tools:context=".ui.NewsUpdateActivity">
+    tools:context=".ui.NewsListActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPersonName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 
     <ListView
         android:id="@+id/newsTextView"

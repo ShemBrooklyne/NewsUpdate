@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == mGetStartedButton) {
             String user = mEditTextPersonName.getText().toString();
-            Intent intent = new Intent(MainActivity.this, NewsUpdateActivity.class);
+            Intent intent = new Intent(MainActivity.this, NewsListActivity.class);
             intent.putExtra("user", user);
             startActivity(intent);
         }

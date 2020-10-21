@@ -1,11 +1,14 @@
 
-package com.moringaschool.newsupdates;
+package com.moringaschool.newsupdates.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.moringaschool.newsupdates.models.Article;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class NewsUpdatesSearchResponse {
 
     @SerializedName("status")

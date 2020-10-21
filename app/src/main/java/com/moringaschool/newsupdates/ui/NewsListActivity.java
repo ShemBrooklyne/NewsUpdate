@@ -4,20 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.moringaschool.newsupdates.adapters.NewsListAdapter;
 import com.moringaschool.newsupdates.models.Article;
 import com.moringaschool.newsupdates.network.NewsApi;
 import com.moringaschool.newsupdates.network.NewsClient;
-import com.moringaschool.newsupdates.NewsScopesArrayAdapter;
-import com.moringaschool.newsupdates.NewsUpdatesSearchResponse;
+//import com.moringaschool.newsupdates.NewsScopesArrayAdapter;
+import com.moringaschool.newsupdates.models.NewsUpdatesSearchResponse;
 import com.moringaschool.newsupdates.R;
 
 import java.util.List;
@@ -28,14 +27,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsUpdateActivity extends AppCompatActivity {
-    public static final String TAG = NewsUpdateActivity.class.getSimpleName();
+public class NewsListActivity extends AppCompatActivity {
+    public static final String TAG = NewsListActivity.class.getSimpleName();
 
-//    @BindView(R.id.userTextView) EditText mUserTextView;
-    @BindView(R.id.newsTextView) ListView mNewsTextView;
-    @BindView(R.id.editTextPersonName) TextView mEditTextPersonName;
+
+//    @BindView(R.id.newsTextView) ListView mNewsTextView;
+//    @BindView(R.id.editTextPersonName) TextView mEditTextPersonName;
+
+
+
+//    RecyclerView implementation
+
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerview;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
+
+    private NewsListAdapter mAdapter;
+
+    public List<Article> top_headlines;
 
     // ListView displaying some hard coded news highlights
     private String[] headlines = new String[] {
@@ -84,27 +93,27 @@ public class NewsUpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_newsupdate);
         ButterKnife.bind(this);
 
-        mNewsTextView = (ListView) findViewById(R.id.newsTextView);
-        mEditTextPersonName = (TextView) findViewById(R.id.editTextPersonName);
-
-        //ArrayAdapter for displaying the listView in Array form.
-//        NewsScopesArrayAdapter adapter = new NewsScopesArrayAdapter(this, android.R.layout.simple_list_item_1, headlines);
+//        mNewsTextView = (ListView) findViewById(R.id.newsTextView);
+//        mEditTextPersonName = (TextView) findViewById(R.id.editTextPersonName);
 //
-//        mNewsTextView.setAdapter(adapter);
-
-        mNewsTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String headlines = ((TextView)view).getText().toString();
-                Toast.makeText(NewsUpdateActivity.this, headlines, Toast.LENGTH_LONG).show();
-            }
-        });
+//        //ArrayAdapter for displaying the listView in Array form.
+////        NewsScopesArrayAdapter adapter = new NewsScopesArrayAdapter(this, android.R.layout.simple_list_item_1, headlines);
+////
+////        mNewsTextView.setAdapter(adapter);
+//
+//        mNewsTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String headlines = ((TextView)view).getText().toString();
+//                Toast.makeText(NewsUpdateActivity.this, headlines, Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         //User's next page display welcome message, Using Intents.
         Log.v("NewsScopeActivity", "In the onItemClickListener!");
         final Intent intent = getIntent();
         String user = intent.getStringExtra("user");
-        mEditTextPersonName.setText("Welcome back " + user);
+//        mEditTextPersonName.setText("Welcome back " + user);
 
         NewsApi client = NewsClient.getClient();
 
@@ -114,18 +123,23 @@ public class NewsUpdateActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<NewsUpdatesSearchResponse> call, Response<NewsUpdatesSearchResponse> response) {
                 if (response.isSuccessful()) {
-                    NewsUpdatesSearchResponse NewsResponse = response.body();
-                    Log.i("Response Body", response.message());
-                    List<Article> ArticleList = response.body().getArticles();
-                    String[] top_headlines = new String[ArticleList.size()];
-
-                    for (int i = 0; i < top_headlines.length; i++) {
-                        top_headlines[i] = ArticleList.get(i).getContent();;
-                    }
-
-                    ArrayAdapter adapter = new NewsScopesArrayAdapter(NewsUpdateActivity.this, android.R.layout.simple_list_item_1, top_headlines);
-                    mNewsTextView.setAdapter(adapter);
-
+                    hideProgressBar();
+                    top_headlines = response.body().getArticles();
+                    mAdapter = new NewsListAdapter(NewsListActivity.this, top_headlines);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(NewsListActivity.this);
+                    mRecyclerview.setLayoutManager(layoutManager);
+                    mRecyclerview.setHasFixedSize(true);
+//                    NewsUpdatesSearchResponse NewsResponse = response.body();
+//                    Log.i("Response Body", response.message());
+//                    List<Article> ArticleList = response.body().getArticles();
+//                    String[] top_headlines = new String[ArticleList.size()];
+//
+//                    for (int i = 0; i < top_headlines.length; i++) {
+//                        top_headlines[i] = ArticleList.get(i).getContent();;
+//                    }
+//
+//                    ArrayAdapter adapter = new NewsScopesArrayAdapter(NewsUpdateActivity.this, android.R.layout.simple_list_item_1, top_headlines);
+//                    mNewsTextView.setAdapter(adapter);
                     showTop_headlines();
                 } else {
                     showUnsuccessfulMessage();
@@ -137,7 +151,6 @@ public class NewsUpdateActivity extends AppCompatActivity {
                 Log.e(TAG, "onFailure:", t);
                 hideProgressBar();
                 showFailureMessage();
-
             }
         });
     }
@@ -155,8 +168,7 @@ public class NewsUpdateActivity extends AppCompatActivity {
     }
 
     private void showTop_headlines() {
-        mNewsTextView.setVisibility(View.VISIBLE);
-        mEditTextPersonName.setVisibility(View.VISIBLE);
+        mRecyclerview.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
