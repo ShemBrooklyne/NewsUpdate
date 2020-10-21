@@ -8,7 +8,7 @@ import com.moringaschool.newsupdates.models.Article;
 
 import org.parceler.Parcel;
 
-@Parcel
+
 public class NewsUpdatesSearchResponse {
 
     @SerializedName("status")

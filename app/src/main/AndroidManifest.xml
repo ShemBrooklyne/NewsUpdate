@@ -13,6 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.NewsDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.NewsListActivity">
+            </meta-data>
+        </activity>
+        <activity
             android:name=".ui.NewsListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

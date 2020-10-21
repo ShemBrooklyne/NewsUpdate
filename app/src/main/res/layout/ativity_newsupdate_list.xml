@@ -8,7 +8,7 @@
         android:layout_width="130dp"
         android:layout_height="100dp"
         android:id="@+id/NewsImageView"
-        android:src="@drawable/newsupdateico"
+        android:src="@drawable/ic_launcher_foreground"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
