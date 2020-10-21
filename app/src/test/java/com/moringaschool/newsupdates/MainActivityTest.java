@@ -4,6 +4,9 @@ package com.moringaschool.newsupdates;
 import android.content.Intent;
 import android.widget.TextView;
 
+import com.moringaschool.newsupdates.ui.MainActivity;
+import com.moringaschool.newsupdates.ui.NewsUpdateActivity;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
