@@ -16,6 +16,15 @@ NewsUpdated App is an android news updater app that scopes the latest news all o
 - Xml
 - Roboelectric
 - Espresso
+- Postman - For testing the responses from the endpint params.
+
+## Api Used
+- News-Api - https://newsapi.org/
+
+## Brief Scope of the Api
+* End point used: 
+-Top headlines /v2/top-headlines
+- - Whereby this endpoint returns eturns breaking news headlines for a country and category, or currently running on a single or multiple sources. This is perfect for use with news tickers or anywhere you want to display live up-to-date news headlines and images as the response. 
 
 ### LICENSE
 
