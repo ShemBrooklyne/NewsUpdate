@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#161e24">
 
-
     <TextView
         android:id="@+id/AppName"
         android:layout_width="208dp"
@@ -35,8 +34,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/acc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/cardViewr"
         app:layout_constraintTop_toBottomOf="@+id/cardView9"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -44,7 +41,7 @@
         android:id="@+id/textView13"
         android:layout_width="109dp"
         android:layout_height="32dp"
-        android:layout_marginBottom="148dp"
+        android:layout_marginStart="24dp"
         android:background="#FFFFFF"
         android:text="Transport"
         android:textAlignment="center"
@@ -53,7 +50,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/toolbar"
         app:layout_constraintEnd_toStartOf="@+id/textView14"
-        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/cardViewr"
         app:layout_constraintVertical_bias="0.0" />
@@ -62,6 +59,7 @@
         android:id="@+id/textView12"
         android:layout_width="109dp"
         android:layout_height="32dp"
+        android:layout_marginStart="16dp"
         android:background="#FFFFFF"
         android:text="Sports"
         android:textAlignment="center"
@@ -70,7 +68,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bookmark"
         app:layout_constraintEnd_toStartOf="@+id/cardViewr"
-        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView7"
         app:layout_constraintVertical_bias="0.0" />
@@ -323,6 +321,16 @@
         app:srcCompat="@drawable/outline_sports_soccer_white_18dp" />
 
     <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="79dp"
+        android:layout_height="73dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewr"
+        app:layout_constraintStart_toStartOf="@+id/cardViewr"
+        app:layout_constraintTop_toTopOf="@+id/cardViewr"
+        app:srcCompat="@drawable/outline_directions_subway_white_18dp" />
+
+    <ImageView
         android:id="@+id/imageView20"
         android:layout_width="79dp"
         android:layout_height="71dp"
@@ -331,15 +339,5 @@
         app:layout_constraintStart_toStartOf="@+id/cardView9"
         app:layout_constraintTop_toTopOf="@+id/cardView9"
         app:srcCompat="@drawable/outline_coronavirus_white_18dp" />
-
-    <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="79dp"
-        android:layout_height="73dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardViewr"
-        app:layout_constraintEnd_toEndOf="@+id/cardViewr"
-        app:layout_constraintStart_toStartOf="@+id/cardViewr"
-        app:layout_constraintTop_toTopOf="@+id/cardViewr"
-        app:srcCompat="@drawable/outline_directions_subway_white_18dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
