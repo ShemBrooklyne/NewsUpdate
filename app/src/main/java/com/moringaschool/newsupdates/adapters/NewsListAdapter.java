@@ -53,8 +53,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
     public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.NewsImageView) ImageView mNewsImageView;
         @BindView(R.id.TitleNameTextView) TextView mTitleNameTextView;
-        @BindView(R.id.categoryTextView) TextView mCategoryTextView;
+//        @BindView(R.id.categoryTextView) TextView mCategoryTextView;
         @BindView(R.id.authorTextView) TextView mAuthorTextView;
+//        @BindView(R.id.publishedAtTextView) TextView mPublishedAtTextView;
 
         private Context mContext;
 
@@ -76,9 +77,10 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
 
         public void bindTop_headlines(Article top_headlines) {
             mTitleNameTextView.setText(top_headlines.getTitle());
-            Picasso.get().load(top_headlines.getUrlToImage());
-            mCategoryTextView.setText(top_headlines.getContent());
+            Picasso.get().load(top_headlines.getUrlToImage()).into(mNewsImageView);
+//            mCategoryTextView.setText(top_headlines.getContent());
             mAuthorTextView.setText(top_headlines.getAuthor());
+//            mPublishedAtTextView.setText(top_headlines.getPublishedAt());
         }
     }
 }

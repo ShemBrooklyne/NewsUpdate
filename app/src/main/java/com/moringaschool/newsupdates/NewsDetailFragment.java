@@ -34,6 +34,7 @@ public class NewsDetailFragment extends Fragment {
     @BindView(R.id.TitleNameTextView) TextView mTitleNameTextView;
     @BindView(R.id.categoryTextView) TextView mCategoryTextView;
     @BindView(R.id.authorTextView) TextView mAuthorTextView;
+    @BindView(R.id.publishedAtTextView) TextView mPublishedAtTextView;
     @BindView(R.id.BookmarkButton) TextView mBookmarkButton;
 
     private Article mTop_headlines;
@@ -66,13 +67,10 @@ public class NewsDetailFragment extends Fragment {
 
         List<String> categories = new ArrayList<>();
 
-//        for (Article article: mTop_headlines.getDescription()) {
-//            categories.add(article.getTitle());
-//        }
-
         mTitleNameTextView.setText(mTop_headlines.getTitle());
         mAuthorTextView.setText (mTop_headlines.getAuthor());
         mCategoryTextView.setText(mTop_headlines.getContent());
+        mPublishedAtTextView.setText(mTop_headlines.getPublishedAt());
 
         return view;
     }

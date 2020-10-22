@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/publishedId"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewsDetailFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:background="#161e24"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
             android:id="@+id/NewsImageView"
-            android:src="@drawable/newsupdateico"
-            android:scaleType="centerCrop" />
+            android:layout_width="match_parent"
+            android:layout_height="261dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/newsupdateico" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="105dp"
             android:background="@android:color/white"
-            android:paddingTop="20dp"
             android:paddingLeft="10dp"
+            android:paddingTop="20dp"
             android:paddingRight="10dp"
             android:paddingBottom="20dp">
 
             <TextView
+                android:id="@+id/TitleNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Top-Headlines"
-                android:id="@+id/TitleNameTextView"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:text="Top-Headlines"
+                android:textColor="#161e24"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mwongeli Mutie"
                 android:id="@+id/authorTextView"
-                android:layout_alignTop="@+id/TitleNameTextView"
-                android:layout_alignParentRight="true"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="-1dp"
+                android:text="Mwongeli Mutie"
+                android:textAlignment="center"
+                android:textColor="#b82e14"
+                android:textStyle="bold|italic" />
 
         </RelativeLayout>
 
@@ -57,38 +61,51 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:layout_above="@+id/BookmarkButton"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
                 android:paddingRight="30dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="content"
                     android:id="@+id/categoryTextView"
+                    android:layout_width="325dp"
+                    android:layout_height="130dp"
                     android:layout_below="@+id/TitleNameTextView"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:textColor="#CDDC39"
-                    android:textStyle="italic" />
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="serif-monospace"
+                    android:text="content"
+                    android:textColor="#FBFBFD"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/publishedAtTextView"
+                    android:layout_width="305dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="12th January 2020"
+                    android:textAlignment="textEnd"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <Button
+                android:id="@+id/BookmarkButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bookmark"
-                android:id="@+id/BookmarkButton"
                 android:layout_alignParentBottom="true"
-                android:background="@color/colorAccent"
-                android:textColor="@color/colorPrimary"
+                android:background="#b82e14"
+                android:text="Bookmark"
+                android:textColor="@android:color/white"
                 android:textSize="15sp" />
         </RelativeLayout>
     </LinearLayout>
