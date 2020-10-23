@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/NewsImageView"
             android:layout_width="match_parent"
-            android:layout_height="261dp"
+            android:layout_height="228dp"
             android:scaleType="centerCrop"
             android:src="@drawable/newsupdateico" />
 
