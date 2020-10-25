@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.moringaschool.newsupdates.Constants;
 import com.moringaschool.newsupdates.R;
+import com.moringaschool.newsupdates.adapters.BookmarkedNewsListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference mGetStartedReference;
     private ValueEventListener mGetStartedReferenceListener;
     @BindView(R.id.GetStartedbutton) Button mGetStartedButton;
+    @BindView(R.id.bookmarkButton) Button mBookmarkButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         mGetStartedButton.setOnClickListener(this);
+        mBookmarkButton.setOnClickListener(this);
 
     }
 
@@ -61,6 +64,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            String user = mEditTextPersonName.getText().toString();
             Intent intent = new Intent(MainActivity.this, NewsListActivity.class);
 //            intent.putExtra("user", user);
+            startActivity(intent);
+        }
+
+        if (view == mBookmarkButton) {
+            Intent intent = new Intent(MainActivity.this, BookmarkedNewsListActivity.class);
             startActivity(intent);
         }
     }

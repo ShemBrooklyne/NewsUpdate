@@ -194,7 +194,7 @@
         android:text="Get Started"
         app:layout_constraintBottom_toTopOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -341,5 +341,18 @@
         app:layout_constraintStart_toStartOf="@+id/cardViewr"
         app:layout_constraintTop_toTopOf="@+id/cardViewr"
         app:srcCompat="@drawable/outline_directions_subway_white_18dp" />
+
+    <Button
+        android:id="@+id/bookmarkButton"
+        android:layout_width="166dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="596dp"
+        android:background="#b82e14"
+        android:text="BookMarked"
+        app:layout_constraintBottom_toTopOf="@+id/addlike"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/GetStartedbutton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
