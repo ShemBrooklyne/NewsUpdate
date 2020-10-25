@@ -23,9 +23,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //    @BindView(R.id.userTextView) EditText mUserTextView;
-//    @BindView(R.id.editTextPersonName)
-//    EditText mEditTextPersonName;
     private DatabaseReference mGetStartedReference;
     private ValueEventListener mGetStartedReferenceListener;
     @BindView(R.id.GetStartedbutton) Button mGetStartedButton;

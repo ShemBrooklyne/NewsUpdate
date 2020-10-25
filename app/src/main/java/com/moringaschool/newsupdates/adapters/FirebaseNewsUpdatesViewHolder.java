@@ -64,7 +64,7 @@ public class FirebaseNewsUpdatesViewHolder extends RecyclerView.ViewHolder imple
                 int itemPosition = getLayoutPosition();
 
                 Intent intent = new Intent(mContext, NewsDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
+//                intent.putExtra("position", itemPosition + "");
                 intent.putExtra("top_headlines", Parcels.wrap(top_headlines));
 
                 mContext.startActivity(intent);
