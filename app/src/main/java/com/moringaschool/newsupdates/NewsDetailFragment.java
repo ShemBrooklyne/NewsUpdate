@@ -7,9 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.newsupdates.models.Article;
 import com.squareup.picasso.Picasso;
 
@@ -26,7 +30,7 @@ import butterknife.ButterKnife;
  * Use the {@link NewsDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsDetailFragment extends Fragment {
+public class NewsDetailFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +39,7 @@ public class NewsDetailFragment extends Fragment {
     @BindView(R.id.categoryTextView) TextView mCategoryTextView;
     @BindView(R.id.authorTextView) TextView mAuthorTextView;
     @BindView(R.id.publishedAtTextView) TextView mPublishedAtTextView;
-    @BindView(R.id.BookmarkButton) TextView mBookmarkButton;
+    @BindView(R.id.BookmarkButton) Button mBookmarkButton;
 
     private Article mTop_headlines;
 
@@ -72,6 +76,19 @@ public class NewsDetailFragment extends Fragment {
         mCategoryTextView.setText(mTop_headlines.getContent());
         mPublishedAtTextView.setText(mTop_headlines.getPublishedAt());
 
+        mBookmarkButton.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mBookmarkButton) {
+            DatabaseReference top_headlinesRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES);
+            top_headlinesRef.push().setValue(mTop_headlines);
+            Toast.makeText(getContext(), "Bookmarked!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
