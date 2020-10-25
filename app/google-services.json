@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "207116523116",
+    "firebase_url": "https://newsupdates-26e4e.firebaseio.com",
+    "project_id": "newsupdates-26e4e",
+    "storage_bucket": "newsupdates-26e4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207116523116:android:2bb3c4a442af84a4b5ea49",
+        "android_client_info": {
+          "package_name": "com.moringaschool.newsupdates"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207116523116-seft016n09epq3a3337k3skf1ub7mkq9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moringaschool.newsupdates",
+            "certificate_hash": "1a95b2e2a57b81fc9562df37305ad8528710c8e3"
+          }
+        },
+        {
+          "client_id": "207116523116-o9goigdjjmgbp7kg585rb7b1nlumle24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_nKP1GE7yCXr2lUeO7PA9YXUkG5KOFoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207116523116-o9goigdjjmgbp7kg585rb7b1nlumle24.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
