@@ -61,7 +61,7 @@ public class NewsListActivity extends AppCompatActivity {
 
         NewsApi client = NewsClient.getClient();
 
-        Call<NewsUpdatesSearchResponse> call = client.getNews("us", "technology", "441e5fea5c6d4f29bee20f551a8cc836");
+        Call<NewsUpdatesSearchResponse> call = client.getNews("standardmedia.co.ke", "441e5fea5c6d4f29bee20f551a8cc836");
 
         call.enqueue(new Callback<NewsUpdatesSearchResponse>() {
             @Override
