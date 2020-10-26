@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/publishedId"
     android:layout_width="match_parent"
@@ -13,82 +14,28 @@
         android:background="#161e24"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/NewsImageView"
-            android:layout_width="match_parent"
-            android:layout_height="228dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/newsupdateico" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:background="@android:color/white"
-            android:paddingLeft="10dp"
-            android:paddingTop="20dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="20dp">
-
-            <TextView
-                android:id="@+id/TitleNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:text="Top-Headlines"
-                android:textColor="#161e24"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/authorTextView"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="0dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="-1dp"
-                android:text="Mwongeli Mutie"
-                android:textAlignment="center"
-                android:textColor="#b82e14"
-                android:textStyle="bold|italic" />
-
-        </RelativeLayout>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/BookmarkButton"
+                android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
                 android:orientation="vertical"
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
-                android:paddingRight="30dp">
-
-                <TextView
-                    android:id="@+id/categoryTextView"
-                    android:layout_width="325dp"
-                    android:layout_height="130dp"
-                    android:layout_below="@+id/TitleNameTextView"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:fontFamily="serif-monospace"
-                    android:text="content"
-                    android:textColor="#FBFBFD"
-                    android:textSize="24sp"
-                    android:textStyle="bold|italic" />
+                android:paddingRight="30dp"
+                tools:ignore="UnknownId">
 
                 <TextView
                     android:id="@+id/publishedAtTextView"
-                    android:layout_width="305dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
                     android:fontFamily="sans-serif"
                     android:text="12th January 2020"
                     android:textAlignment="textEnd"
@@ -96,18 +43,85 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/TitleNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:layout_below="@+id/TitleNameTextView"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/arbutus"
+                    android:text="Top-Headlines"
+                    android:textAlignment="textStart"
+                    android:textColor="#FBFBFD"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/NewsImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="228dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/newsupdateico" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="248dp"
+                    android:background="@android:color/white"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp">
+
+                    <TextView
+                        android:id="@+id/categoryTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:fontFamily="serif-monospace"
+                        android:text="Content"
+                        android:textColor="#161e24"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/authorTextView"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="-1dp"
+                        android:background="#0E0E0E"
+                        android:text="Mwongeli Mutie"
+                        android:textAlignment="center"
+                        android:textColor="#E8FDFCFC"
+                        android:textStyle="bold|italic" />
+
+                </RelativeLayout>
+
             </LinearLayout>
 
             <Button
                 android:id="@+id/BookmarkButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="152dp"
+                android:layout_marginEnd="-1dp"
+                android:layout_marginBottom="2dp"
                 android:background="#b82e14"
                 android:text="Bookmark"
-                android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:textColor="#FFFFFF"
+                tools:ignore="UnknownId" />
+
         </RelativeLayout>
+
     </LinearLayout>
 </FrameLayout>
 
