@@ -63,6 +63,7 @@ public class NewsListActivity extends AppCompatActivity {
 
         Call<NewsUpdatesSearchResponse> call = client.getNews("standardmedia.co.ke", "441e5fea5c6d4f29bee20f551a8cc836");
 
+
         call.enqueue(new Callback<NewsUpdatesSearchResponse>() {
             @Override
             public void onResponse(Call<NewsUpdatesSearchResponse> call, Response<NewsUpdatesSearchResponse> response) {

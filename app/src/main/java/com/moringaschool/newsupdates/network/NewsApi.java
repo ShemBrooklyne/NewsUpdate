@@ -16,7 +16,6 @@ public interface NewsApi {
 
             @Query("domains") String domains,
             @Query("apiKey") String apiKey
-
     );
 }
 
