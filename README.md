@@ -26,7 +26,7 @@ API News Is JSON API for live news and blog articles from the media. This projec
 
 ## Quick Demo of the App
 What you get after starting the app <br> <br><br>
-<img src="app/src/main/res/drawable/NewsUpdatesDemo.jpg" height="" width="" alt="The main page" > 
+<img src="app/src/main/res/drawable/newsupdatesdemo.jpg" height="" width="" alt="The main page" > 
 
 
 ## Future Implementation.
