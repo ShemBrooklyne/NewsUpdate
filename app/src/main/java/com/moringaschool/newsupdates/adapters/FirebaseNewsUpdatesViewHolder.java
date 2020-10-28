@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +38,7 @@ public class FirebaseNewsUpdatesViewHolder extends RecyclerView.ViewHolder imple
         itemView.setOnClickListener(this);
     }
 
-    public void bindTop_headlines(Article top_headlines) {
+    public void bindArticle(Article top_headlines) {
         TextView mTitleNameTextView = (TextView) mView.findViewById(R.id.TitleNameTextView);
         ImageView mNewsImageView = (ImageView) mView.findViewById(R.id.NewsImageView);
         TextView mAuthorTextView = (TextView) mView.findViewById(R.id.authorTextView);
@@ -49,32 +51,38 @@ public class FirebaseNewsUpdatesViewHolder extends RecyclerView.ViewHolder imple
     @Override
     public void onClick(View v) {
 
-        final ArrayList<Article> top_headlines = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase
+//        final ArrayList<Article> top_headlines = new ArrayList<>();
+//        DatabaseReference ref = FirebaseDatabase
+//                .getInstance()
+//                .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES);
+//        ref.addListenerForSingleValueEvent(new ValueEventListener()
+            final ArrayList<Article> top_headlines = new ArrayList<>();
+        FirebaseUser user = FirebaseAuth
                 .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
+                .getCurrentUser();
+        String uid = user.getUid();
+        DatabaseReference reference = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES).child(uid);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
                     top_headlines.add(snapshot.getValue(Article.class));
                 }
 
                 int itemPosition = getLayoutPosition();
-
                 Intent intent = new Intent(mContext, NewsDetailActivity.class);
-//                intent.putExtra("position", itemPosition + "");
+                intent.putExtra("position", itemPosition + "");
                 intent.putExtra("top_headlines", Parcels.wrap(top_headlines));
 
                 mContext.startActivity(intent);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
     }
 }
