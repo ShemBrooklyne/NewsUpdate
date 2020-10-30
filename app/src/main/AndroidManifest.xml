@@ -19,9 +19,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.BookmarkedNewsListActivity"
-            android:label="@string/title_activity_bookmarked_news_list"
-            android:theme="@style/AppTheme1.NoActionBar" />
+            android:name=".ui.BookmarkedNewsListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity" />
+        </activity>
         <activity android:name=".ui.NewsDetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -45,9 +47,4 @@
 
 </manifest>
 
-<!--<intent-filter>-->
-<!--<action android:name="android.intent.action.MAIN" />-->
-
-<!--<category android:name="android.intent.category.LAUNCHER" />-->
-<!--</intent-filter>-->
 

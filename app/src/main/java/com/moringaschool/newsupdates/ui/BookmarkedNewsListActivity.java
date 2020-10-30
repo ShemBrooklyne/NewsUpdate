@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.newsupdates.Constants;
 import com.moringaschool.newsupdates.R;
 import com.moringaschool.newsupdates.adapters.FirebaseNewsUpdatesViewHolder;
@@ -36,49 +37,55 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class BookmarkedNewsListActivity extends AppCompatActivity {
-    private static final String TAG = "BookmarkedNewsListActivity";
-    private DatabaseReference mArticlesReference;
+//    private static final String TAG = "BookmarkedNewsListActivity";
+    DatabaseReference reference;
+    private FirebaseRecyclerOptions<Article> options;
     private FirebaseRecyclerAdapter<Article, FirebaseNewsUpdatesViewHolder> mFirebaseAdapter;
+    private RecyclerView recyclerView;
+//    private Object FirebaseUser;
+//    @BindView(R.id.recyclerView) RecyclerView recyclerView;
 
-    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newsupdate);
-        ButterKnife.bind(this);
+        setContentView(R.layout.bookmarked_news);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
-        mArticlesReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES).child(uid);
-        setUpFirebaseAdapter();
-    }
+        recyclerView = findViewById (R.id.bookmarkedRecycler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-    private void setUpFirebaseAdapter() {
-        FirebaseRecyclerOptions<Article> options =
-                new FirebaseRecyclerOptions.Builder<Article>()
-                .setQuery(mArticlesReference, Article.class)
-                .build();
 
+
+        reference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES).child(uid);
+
+        options = new FirebaseRecyclerOptions.Builder<Article>()
+                .setQuery(reference, Article.class).build();
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Article, FirebaseNewsUpdatesViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull FirebaseNewsUpdatesViewHolder holder, int position, @NonNull Article top_headlines) {
-                holder.bindArticle(top_headlines);
+            protected void onBindViewHolder(@NonNull FirebaseNewsUpdatesViewHolder holder, int position, @NonNull Article model) {
+                holder.TitleNameTextView.setText(model.getTitle());
+                holder.authorTextView.setText(model.getAuthor());
+                holder.NewsImageView.setImageResource(R.drawable.newsupdatesdemo);
             }
 
             @NonNull
             @Override
             public FirebaseNewsUpdatesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_bookmarked_news_list, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ativity_newsupdate_list, parent, false);
                 return new FirebaseNewsUpdatesViewHolder(view);
             }
         };
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mFirebaseAdapter);
+        mFirebaseAdapter.startListening();
+        recyclerView.setAdapter(mFirebaseAdapter);
+
+
     }
+
 
     @Override
     protected void onStart() {
@@ -89,62 +96,39 @@ public class BookmarkedNewsListActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if(mFirebaseAdapter!= null) {
-            mFirebaseAdapter.stopListening();
+        if (mFirebaseAdapter!= null) {
+            mFirebaseAdapter.startListening();
         }
     }
+}
 
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_newsupdate);
 //        ButterKnife.bind(this);
 //
 //        mArticlesReference = FirebaseDatabase
 //                .getInstance()
 //                .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES);
 //        setUpFirebaseAdapter();
-//    }
 //
-//    private void setUpFirebaseAdapter(){
+//private void setUpFirebaseAdapter(){
 //        FirebaseRecyclerOptions<Article> options =
-//                new FirebaseRecyclerOptions.Builder<Article>()
-//                .setQuery(mArticlesReference, Article.class)
-//                .build();
+//        new FirebaseRecyclerOptions.Builder<Article>()
+//        .setQuery(mArticlesReference, Article.class)
+//        .build();
 //
 //        mFirebaseAdapter = new FirebaseRecyclerAdapter<Article, FirebaseNewsUpdatesViewHolder>(options) {
-//            @SuppressLint("LongLogTag")
-//            @Override
-//            protected void onBindViewHolder(@NonNull FirebaseNewsUpdatesViewHolder firebaseNewsUpdatesViewHolder, int position, @NonNull Article top_headlines) {
-//                Log.i(TAG, "onBindViewHolder: ");
-//                firebaseNewsUpdatesViewHolder.bindTop_headlines(top_headlines);
-//            }
-//
-//            @NonNull
-//            @Override
-//            public FirebaseNewsUpdatesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ativity_newsupdate_list, parent, false);
-//                return new FirebaseNewsUpdatesViewHolder(view);
-//            }
-//        };
-//
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        mRecyclerView.setAdapter(mFirebaseAdapter);
-//        mFirebaseAdapter.startListening();
-//    }
-//
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        mFirebaseAdapter.startListening();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        if (mFirebaseAdapter!= null) {
-//            mFirebaseAdapter.startListening();
+//@SuppressLint("LongLogTag")
+//@Override
+//protected void onBindViewHolder(@NonNull FirebaseNewsUpdatesViewHolder firebaseNewsUpdatesViewHolder, int position, @NonNull Article top_headlines) {
+//        Log.i(TAG, "onBindViewHolder: ");
+//        firebaseNewsUpdatesViewHolder.bindArticle(top_headlines);
 //        }
-//    }
-}
+//
+//@NonNull
+//@Override
+//public FirebaseNewsUpdatesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ativity_newsupdate_list, parent, false);
+//        return new FirebaseNewsUpdatesViewHolder(view);
+//        }
+//        };
+
