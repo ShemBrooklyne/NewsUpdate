@@ -84,10 +84,10 @@ public class NewsDetailFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if (v == mBookmarkButton) {
-            DatabaseReference top_headlinesRef = FirebaseDatabase
+            DatabaseReference reference = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES);
-            top_headlinesRef.push().setValue(mTop_headlines);
+            reference.push().setValue(mTop_headlines);
             Toast.makeText(getContext(), "Bookmarked!", Toast.LENGTH_SHORT).show();
         }
     }
