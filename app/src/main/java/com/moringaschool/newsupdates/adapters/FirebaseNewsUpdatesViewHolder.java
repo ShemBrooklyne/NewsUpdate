@@ -34,8 +34,7 @@ import butterknife.BindView;
 public class FirebaseNewsUpdatesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 //    public TextView textView;
-    View mView;
-    Context mContext;
+//    View mView;
 //    @BindView(R.id.NewsImageView) ImageView mImageLabel;
 //    @BindView(R.id.TitleNameTextView) TextView mTitleNameTextView;
 //    @BindView(R.id.categoryTextView) TextView mCategoryTextView;
@@ -43,17 +42,21 @@ public class FirebaseNewsUpdatesViewHolder extends RecyclerView.ViewHolder imple
 //    @BindView(R.id.publishedAtTextView) TextView mPublishedAtTextView;
     @BindView(R.id.BookmarkButton) Button mBookmarkButton;
 
+    Context mContext;
     public ImageView NewsImageView;
     public TextView TitleNameTextView;
     public TextView authorTextView;
+//    public ImageView categoryTextView;
 
     public FirebaseNewsUpdatesViewHolder(View itemView) {
         super(itemView);
-//        mView = itemView;
         mContext = itemView.getContext();
         itemView.setOnClickListener(this);
+//        mView = itemView;
+//        mContext = itemView.getContext();
+//        itemView.setOnClickListener(this);
 
-//        NewsImageView = itemView.findViewById(R.id.NewsImageView);
+        NewsImageView = itemView.findViewById(R.id.NewsImageView);
         TitleNameTextView = itemView.findViewById(R.id.TitleNameTextView);
 //        categoryTextView = itemView.findViewById(R.id.categoryTextView);
         authorTextView = itemView.findViewById(R.id.authorTextView);

@@ -1,134 +1,64 @@
 package com.moringaschool.newsupdates.ui;
 
-import android.annotation.SuppressLint;
+
 import android.os.Bundle;
 
-
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.auth.FirebaseUser;
-import com.moringaschool.newsupdates.Constants;
 import com.moringaschool.newsupdates.R;
-import com.moringaschool.newsupdates.adapters.FirebaseNewsUpdatesViewHolder;
+import com.moringaschool.newsupdates.adapters.articleAdapter;
 import com.moringaschool.newsupdates.models.Article;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class BookmarkedNewsListActivity extends AppCompatActivity {
-//    private static final String TAG = "BookmarkedNewsListActivity";
-    DatabaseReference reference;
-    private FirebaseRecyclerOptions<Article> options;
-    private FirebaseRecyclerAdapter<Article, FirebaseNewsUpdatesViewHolder> mFirebaseAdapter;
-    private RecyclerView recyclerView;
-//    private Object FirebaseUser;
-//    @BindView(R.id.recyclerView) RecyclerView recyclerView;
 
+    private RecyclerView recyclerView;
+    articleAdapter adapter; // Create Object of the Adapter class
+    DatabaseReference mbase; // Create object of the 
+    // Firebase Realtime Database 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bookmarked_news);
+        setContentView(R.layout.activity_master);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
+        // Create a instance of the database and get 
+        // its reference 
+        mbase = FirebaseDatabase.getInstance().getReference();
 
-        recyclerView = findViewById (R.id.bookmarkedRecycler);
-        recyclerView.setHasFixedSize(true);
+        recyclerView = findViewById(R.id.recycler1);
+
+        // To display the Recycler view linearly 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
-
-        reference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES).child(uid);
-
-        options = new FirebaseRecyclerOptions.Builder<Article>()
-                .setQuery(reference, Article.class).build();
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Article, FirebaseNewsUpdatesViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull FirebaseNewsUpdatesViewHolder holder, int position, @NonNull Article model) {
-                holder.TitleNameTextView.setText(model.getTitle());
-                holder.authorTextView.setText(model.getAuthor());
-                holder.NewsImageView.setImageResource(R.drawable.newsupdatesdemo);
-            }
-
-            @NonNull
-            @Override
-            public FirebaseNewsUpdatesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ativity_newsupdate_list, parent, false);
-                return new FirebaseNewsUpdatesViewHolder(view);
-            }
-        };
-
-        mFirebaseAdapter.startListening();
-        recyclerView.setAdapter(mFirebaseAdapter);
-
-
+        // It is a class provide by the FirebaseUI to make a 
+        // query in the database to fetch appropriate data 
+        FirebaseRecyclerOptions<Article> options = new FirebaseRecyclerOptions.Builder<Article>()
+                .setQuery(mbase, Article.class)
+                .build();
+        // Connecting object of required Adapter class to 
+        // the Adapter class itself 
+        adapter = new articleAdapter(options);
+        // Connecting Adapter class with the Recycler view*/ 
+        recyclerView.setAdapter(adapter);
     }
 
-
-    @Override
-    protected void onStart() {
+    // Function to tell the app to start getting 
+    // data from database on starting of the activity 
+    @Override protected void onStart() {
         super.onStart();
-        mFirebaseAdapter.startListening();
+        adapter.startListening();
     }
 
-    @Override
-    protected void onStop() {
+    // Function to tell the app to stop getting 
+    // data from database on stoping of the activity 
+    @Override protected void onStop() {
         super.onStop();
-        if (mFirebaseAdapter!= null) {
-            mFirebaseAdapter.startListening();
-        }
+        adapter.stopListening();
     }
 }
-
-
-//        ButterKnife.bind(this);
-//
-//        mArticlesReference = FirebaseDatabase
-//                .getInstance()
-//                .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES);
-//        setUpFirebaseAdapter();
-//
-//private void setUpFirebaseAdapter(){
-//        FirebaseRecyclerOptions<Article> options =
-//        new FirebaseRecyclerOptions.Builder<Article>()
-//        .setQuery(mArticlesReference, Article.class)
-//        .build();
-//
-//        mFirebaseAdapter = new FirebaseRecyclerAdapter<Article, FirebaseNewsUpdatesViewHolder>(options) {
-//@SuppressLint("LongLogTag")
-//@Override
-//protected void onBindViewHolder(@NonNull FirebaseNewsUpdatesViewHolder firebaseNewsUpdatesViewHolder, int position, @NonNull Article top_headlines) {
-//        Log.i(TAG, "onBindViewHolder: ");
-//        firebaseNewsUpdatesViewHolder.bindArticle(top_headlines);
-//        }
-//
-//@NonNull
-//@Override
-//public FirebaseNewsUpdatesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ativity_newsupdate_list, parent, false);
-//        return new FirebaseNewsUpdatesViewHolder(view);
-//        }
-//        };
 
