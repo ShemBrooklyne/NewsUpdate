@@ -16,19 +16,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.moringaschool.newsupdates.Constants;
 import com.moringaschool.newsupdates.R;
 import com.moringaschool.newsupdates.models.Article;
 import com.squareup.picasso.Picasso;
 
-// FirebaseRecyclerAdapter is a class provided by
-// FirebaseUI. it provides functions to bind, adapt and show
-// database contents in a Recycler View
 public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdapter.personsViewholder> {
 
     private static final String TAG = "Bookmared news";
@@ -42,13 +42,6 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
         super(options);
     }
 
-    // Function to bind the view in Card view(here
-    // "person.xml") iwth data in
-    // model class(here "person.class")
-
-    // Function to tell the class about the Card view (here
-    // "person.xml")in
-    // which the data will be shown
     @NonNull
     @Override
     public personsViewholder
@@ -62,9 +55,13 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
     public void
     onBindViewHolder(@NonNull personsViewholder holder, int position, @NonNull Article model) {
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES).child(uid);
         DatabaseReference usersRef = rootRef.child("top_headlines");
         usersRef.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()) {
@@ -82,22 +79,10 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
 
             }
         });
-        // Add firstname from model class (here
-        // "person.class")to appropriate view in Card
-        // view (here "person.xml")
-        // Add lastname from model class (here
-        // "person.class")to appropriate view in Card
-        // view (here "person.xml")
-        // Add age from model class (here
-        // "person.class")to appropriate view in Card
-        // view (here "person.xml")
-//        holder.NewsImageView.Picasso.get().load(model.getUrlToImage()).into(NewsImageView);
-//        holder.NewsImageView.setImageURI(Uri.parse(model.getUrlToImage()));
 
     }
 
-    // Sub Class to create references of the views in Crad
-    // view (here "person.xml")
+
     class personsViewholder extends RecyclerView.ViewHolder {
         public TextView TitleNameTextView, authorTextView;
         public ImageView NewsImageView;
