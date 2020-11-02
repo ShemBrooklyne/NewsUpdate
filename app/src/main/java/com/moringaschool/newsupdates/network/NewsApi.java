@@ -10,13 +10,8 @@ public interface NewsApi {
 
     @GET("everything")
     Call<NewsUpdatesSearchResponse> getNews(
-//            @Query("country") String country,
-//            @Query("category") String category,
-//            @Query("apiKey") String apiKey
-
             @Query("domains") String domains,
             @Query("apiKey") String apiKey
     );
 }
-
 //https://newsapi.org/v2/top-headlines
