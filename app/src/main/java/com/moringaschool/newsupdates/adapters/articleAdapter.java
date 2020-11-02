@@ -26,12 +26,11 @@ import com.moringaschool.newsupdates.R;
 import com.moringaschool.newsupdates.models.Article;
 import com.squareup.picasso.Picasso;
 
-// FirebaseRecyclerAdapter is a class provided by
-// FirebaseUI. it provides functions to bind, adapt and show
+
 // database contents in a Recycler View
 public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdapter.personsViewholder> {
 
-    private static final String TAG = "Bookmared news";
+    private static final String TAG = "Bookmarked news";
     DatabaseReference reference;
     Context mContext;
     private Article article;
@@ -42,19 +41,15 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
         super(options);
     }
 
-    // Function to bind the view in Card view(here
-    // "person.xml") iwth data in
-    // model class(here "person.class")
 
-    // Function to tell the class about the Card view (here
-    // "person.xml")in
-    // which the data will be shown
+
     @NonNull
     @Override
-    public personsViewholder
-    onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ativity_newsupdate_list, parent, false);
+    public personsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_list_item_drag, parent, false);
         return new personsViewholder(view);
+
+
     }
 
 
@@ -82,22 +77,11 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
 
             }
         });
-        // Add firstname from model class (here
-        // "person.class")to appropriate view in Card
-        // view (here "person.xml")
-        // Add lastname from model class (here
-        // "person.class")to appropriate view in Card
-        // view (here "person.xml")
-        // Add age from model class (here
-        // "person.class")to appropriate view in Card
-        // view (here "person.xml")
-//        holder.NewsImageView.Picasso.get().load(model.getUrlToImage()).into(NewsImageView);
-//        holder.NewsImageView.setImageURI(Uri.parse(model.getUrlToImage()));
+
 
     }
 
-    // Sub Class to create references of the views in Crad
-    // view (here "person.xml")
+
     class personsViewholder extends RecyclerView.ViewHolder {
         public TextView TitleNameTextView, authorTextView;
         public ImageView NewsImageView;
