@@ -93,7 +93,7 @@ dependencies {
 
 //Add firebase SDK
 //    implementation 'com.google.firebase:firebase-core:19.2.0'
-    implementation 'com.google.firebase:firebase-core:17.5.1'
+    implementation 'com.google.firebase:firebase-core:18.0.0'
 //Realtime Database for firebase data saving
     implementation 'com.google.firebase:firebase-database:19.5.1'
 //    implementation 'com.google.firebase:firebase-database:19.5.0'
@@ -103,7 +103,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
 //Firebase User Authentication
 //    implementation 'com.google.firebase:firebase-auth:17.2.1'
-    implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.0'
 
 
 }
