@@ -51,7 +51,5 @@ What you get after starting the app <br> <br><br>
 
 ### LICENSE
 
-Copyright 2020 Shem Brooklyne Mwangi
-
 * LICENSED UNDER  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](license/MIT)
 
