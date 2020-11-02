@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.newsupdates.models.Article;
@@ -83,11 +85,27 @@ public class NewsDetailFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+
+//        if (v == mBookmarkButton) {
+//            DatabaseReference reference = FirebaseDatabase
+//                    .getInstance()
+//                    .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES);
+//            reference.push().setValue(mTop_headlines);
+//            Toast.makeText(getContext(), "Bookmarked!", Toast.LENGTH_SHORT).show();
+//        }
+
         if (v == mBookmarkButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
             DatabaseReference reference = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES);
-            reference.push().setValue(mTop_headlines);
+                    .getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES)
+                    .child(uid);
+
+            DatabaseReference pushRef = reference.push();
+            String pushId = pushRef.getKey();
+            mTop_headlines.setPushId(pushId);
+            pushRef.setValue(mTop_headlines);
             Toast.makeText(getContext(), "Bookmarked!", Toast.LENGTH_SHORT).show();
         }
     }

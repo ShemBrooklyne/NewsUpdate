@@ -16,18 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.moringaschool.newsupdates.Constants;
 import com.moringaschool.newsupdates.R;
 import com.moringaschool.newsupdates.models.Article;
 import com.squareup.picasso.Picasso;
 
 
 // database contents in a Recycler View
+
 public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdapter.personsViewholder> {
 
     private static final String TAG = "Bookmarked news";
@@ -40,8 +44,6 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
     public articleAdapter(@NonNull FirebaseRecyclerOptions<Article> options) {
         super(options);
     }
-
-
 
     @NonNull
     @Override
@@ -57,9 +59,13 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
     public void
     onBindViewHolder(@NonNull personsViewholder holder, int position, @NonNull Article model) {
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_TOP_HEADLINES).child(uid);
         DatabaseReference usersRef = rootRef.child("top_headlines");
         usersRef.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()) {
@@ -77,7 +83,7 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
 
             }
         });
-
+ 
 
     }
 
