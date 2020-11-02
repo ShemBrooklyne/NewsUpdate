@@ -3,6 +3,7 @@ package com.moringaschool.newsupdates.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == mGetStartedButton) {
+            flipIt(view);
 //            String user = mEditTextPersonName.getText().toString();
             Intent intent = new Intent(MainActivity.this, NewsListActivity.class);
 //            intent.putExtra("user", user);
@@ -103,9 +105,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (view == mBookmarkButton) {
+            flipIt(view);
             Intent intent = new Intent(MainActivity.this, BookmarkedNewsListActivity.class);
             startActivity(intent);
         }
+
+
+    }
+
+    private void flipIt(final View viewToFlip) {
+        ObjectAnimator flip = ObjectAnimator.ofFloat(viewToFlip, "rotationX", 0f, 360f);
+        flip.setDuration(500);
+        flip.start();
     }
 
 //    @Override

@@ -3,6 +3,7 @@ package com.moringaschool.newsupdates.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,8 +76,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         if (view == mPasswordLoginButton) {
+            flipIt(view);
             loginWithPassword();
         }
+    }
+
+    private void flipIt(final View viewToFlip) {
+        ObjectAnimator flip = ObjectAnimator.ofFloat(viewToFlip, "rotationX", 0f, 360f);
+        flip.setDuration(2000);
+        flip.start();
     }
 
     private void createAuthProgressDialog() {

@@ -1,5 +1,6 @@
 package com.moringaschool.newsupdates.adapters;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -67,11 +68,18 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
 
         @Override
         public void onClick(View v) {
+            flipIt(v);
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, NewsDetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("top_headlines", Parcels.wrap(mTop_headlines));
             mContext.startActivity(intent);
+        }
+
+        private void flipIt(final View viewToFlip) {
+            ObjectAnimator flip = ObjectAnimator.ofFloat(viewToFlip, "rotationX", 0f, 360f);
+            flip.setDuration(200);
+            flip.start();
         }
 
         public void bindTop_headlines(Article top_headlines) {

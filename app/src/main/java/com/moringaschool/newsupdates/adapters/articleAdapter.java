@@ -29,9 +29,12 @@ import com.moringaschool.newsupdates.R;
 import com.moringaschool.newsupdates.models.Article;
 import com.squareup.picasso.Picasso;
 
+
+// database contents in a Recycler View
+
 public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdapter.personsViewholder> {
 
-    private static final String TAG = "Bookmared news";
+    private static final String TAG = "Bookmarked news";
     DatabaseReference reference;
     Context mContext;
     private Article article;
@@ -44,10 +47,11 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
 
     @NonNull
     @Override
-    public personsViewholder
-    onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ativity_newsupdate_list, parent, false);
+    public personsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_list_item_drag, parent, false);
         return new personsViewholder(view);
+
+
     }
 
 
@@ -79,6 +83,7 @@ public class articleAdapter extends FirebaseRecyclerAdapter<Article, articleAdap
 
             }
         });
+ 
 
     }
 
