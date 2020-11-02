@@ -34,6 +34,9 @@ public class Article {
     @Expose
     private String content;
 
+    private String pushId;
+
+
     /**
      * No args constructor for use in serialization
      * 
@@ -52,7 +55,7 @@ public class Article {
      * @param url
      * @param content
      */
-    public Article(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
+    public Article(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content, String pushId) {
         super();
         this.source = source;
         this.author = author;
@@ -62,6 +65,7 @@ public class Article {
         this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
         this.content = content;
+        this.pushId = pushId;
     }
 
     public Source getSource() {
@@ -128,4 +132,11 @@ public class Article {
         this.content = content;
     }
 
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
 }
